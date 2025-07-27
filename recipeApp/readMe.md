@@ -28,9 +28,12 @@ A simple Spring Boot REST API that fetches **recipe data** from a public API [`h
 
 Build and run the project
 
-`./mvnw spring-boot:run`
+```declarative
+./mvnw spring-boot:run
+```
 
 Test the endpoint
+
 Open your browser or Postman:
 
 `http://localhost:8080/api/recipes`

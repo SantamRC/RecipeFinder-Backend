@@ -34,10 +34,9 @@ public class RecipeSearchService {
         }
 
         return session.search(Recipe.class)
-                .where(f -> f.match()
+                .where(f -> f.wildcard()
                         .fields("name", "cuisine")
-                        .matching(query)
-                        .fuzzy(1))
+                        .matching("*" + query.toLowerCase() + "*"))
                 .fetchHits(20);
     }
 
