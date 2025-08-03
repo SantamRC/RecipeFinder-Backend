@@ -15,8 +15,9 @@ public class SpringSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
+                .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users", "/api/users/**", "/login","/api/recipes/fetch-and-save").permitAll()
+                        .requestMatchers("/api/users", "/api/users/**", "/login","/api/recipes/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
 

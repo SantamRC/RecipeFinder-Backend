@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManagerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -30,6 +31,7 @@ public class RecipeAppApplication {
 	}
 
 	@Bean
+	@Primary
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		return new JpaTransactionManager(entityManagerFactory);
 	}
