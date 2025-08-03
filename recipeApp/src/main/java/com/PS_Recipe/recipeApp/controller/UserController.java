@@ -1,6 +1,7 @@
 package com.PS_Recipe.recipeApp.controller;
 
 import com.PS_Recipe.recipeApp.dto.LoginRequestDTO;
+import com.PS_Recipe.recipeApp.dto.LoginResponseDTO;
 import com.PS_Recipe.recipeApp.entity.Favourite;
 import com.PS_Recipe.recipeApp.entity.User;
 import com.PS_Recipe.recipeApp.service.UserService;
@@ -56,14 +57,14 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO request) {
-        var user = userService.getUserByUsername(request.getUsername());
+        User user = userService.getUserByUsername(request.getUsername());
 
         if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
 
         String token = jwtUtil.generateToken(user.getUsername());
-        return ResponseEntity.ok(Map.of("token", token));
+        return ResponseEntity.ok(new LoginResponseDTO(token,user.getUsername(),user.getFavourites() != null ? user.getFavourites() : List.of()));
     }
 
 }
