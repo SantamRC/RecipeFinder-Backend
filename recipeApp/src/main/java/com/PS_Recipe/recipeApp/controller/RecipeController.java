@@ -25,7 +25,7 @@ public class RecipeController {
 
     @PostMapping("/fetch-and-save")
     public String fetchAndSaveRecipes(){
-        log.info("Called the /fetch-and-save dndpoint");
+        log.info("Called the /fetch-and-save endpoint");
         return recipeService.fetchAndSaveRecipes();
     }
 
